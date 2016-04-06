@@ -208,11 +208,6 @@ namespace AeroScreenshot {
             }
         }
 
-        private void SendTweet(string msg) {
-            TwitterResponse<TwitterStatus> status =  TwitterStatus.Update(tokens, msg, new StatusUpdateOptions() { UseSSL = true, APIBaseAddress = "http://api.twitter.com/1.1/" });﻿
-            Console.WriteLine(status.Result);
-        }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e) {
             new AboutBox().Show();
         }
@@ -347,20 +342,12 @@ namespace AeroScreenshot {
                     Console.WriteLine(mediaPostResponse.StatusCode);
                     Console.WriteLine(mediaPostResponse.Content);
                     Console.WriteLine(mediaPostResponse.ErrorMessage);
+                    
                 }
             };
             tweet.Show(this);
         }
 
-        private void btnTwtrSignin_Click(object sender, EventArgs e) {
-            
-        }
-
-    }
-
-    class TweetRequestBody {
-        public string status;
-        public string media_ids;
     }
 
 }
