@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AeroScreenshotIcon.ico" />
+    <Content Include="AeroScreenshotIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
