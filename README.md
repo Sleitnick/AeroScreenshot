@@ -1,5 +1,5 @@
 # AeroScreenshot
-![alt tag](https://github.com/Sleitnick/AeroScreenshot/blob/master/ScreenshotTest2/AeroScreenshotIcon.png)
+![Icon](ScreenshotTest2/AeroScreenshotIcon.png)
 
 Capture, crop, save, and share screenshots.
 
