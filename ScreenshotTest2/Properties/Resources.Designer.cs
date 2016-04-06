@@ -59,23 +59,5 @@ namespace AeroScreenshot.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Mdol3EGRkaFhhZH3iy3LkDjaf.
-        /// </summary>
-        internal static string consumer_key {
-            get {
-                return ResourceManager.GetString("consumer_key", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to 4NxX3ubRWJhFkyXMH6msSeQcuvvoDixQN2aTtxKVK5BkM4A3in.
-        /// </summary>
-        internal static string consumer_secret {
-            get {
-                return ResourceManager.GetString("consumer_secret", resourceCulture);
-            }
-        }
     }
 }

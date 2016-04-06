@@ -117,10 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="consumer_key" xml:space="preserve">
-    <value>Mdol3EGRkaFhhZH3iy3LkDjaf</value>
-  </data>
-  <data name="consumer_secret" xml:space="preserve">
-    <value>4NxX3ubRWJhFkyXMH6msSeQcuvvoDixQN2aTtxKVK5BkM4A3in</value>
-  </data>
 </root>

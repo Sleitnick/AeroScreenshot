@@ -94,6 +94,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sensitive.cs" />
     <Compile Include="Tweet.cs">
       <SubType>Form</SubType>
     </Compile>

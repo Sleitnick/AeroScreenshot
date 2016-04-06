@@ -144,8 +144,16 @@ namespace AeroScreenshot {
             };
 
             // Twitter auth:
-            consumerKey = Properties.Resources.consumer_key;
-            consumerSecret = Properties.Resources.consumer_secret;
+            {
+                Type type = Type.GetType("AeroScreenshot.Sensitive");
+                if (type != null && type.IsClass) {
+                    consumerKey = Sensitive.CONSUMER_KEY;
+                    consumerSecret = Sensitive.CONSUMER_SECRET;
+                } else {
+                    Console.WriteLine("No sensitive class");
+                }
+            }
+
             OAuthTokenResponse reqToken = OAuthUtility.GetRequestToken(
                 consumerKey,
                 consumerSecret,
