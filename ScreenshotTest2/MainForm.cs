@@ -179,7 +179,16 @@ namespace AeroScreenshot {
             if (selection == Rectangle.Empty) {
                 return bmp;
             } else {
-                return bmp.Clone(selection, bmp.PixelFormat);
+                if (selection.X < 0) selection.X = 0;
+                if (selection.Y < 0) selection.Y = 0;
+                if (selection.Right > bmp.Width) selection.Width = (bmp.Width - selection.X);
+                if (selection.Bottom > bmp.Height) selection.Height = (bmp.Height - selection.Y);
+                if (selection.Width < 15 || selection.Height < 15) {
+                    selection = Rectangle.Empty;
+                    return GetImageFromSelection();
+                } else {
+                    return bmp.Clone(selection, bmp.PixelFormat);
+                }
             }
         }
 
@@ -255,14 +264,19 @@ namespace AeroScreenshot {
             pd.PrintPage += (s, args) => {
                 Image i = GetImageFromSelection();
                 Rectangle m = args.MarginBounds;
+                pd.DefaultPageSettings.Landscape = (i.Width > i.Height);
                 if ((double)i.Width / (double)i.Height > (double)m.Width / (double)m.Height) {
                     m.Height = (int)((double)i.Height / (double)i.Width * (double)m.Width);
                 } else {
                     m.Width = (int)((double)i.Width / (double)i.Height * (double)m.Height);
                 }
+                args.Graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
                 args.Graphics.DrawImage(i, m);
             };
-            printDialog.ShowDialog(this);
+            DialogResult result = printDialog.ShowDialog(this);
+            if (result == DialogResult.OK) {
+                pd.Print();
+            }
         }
 
         private void newLoginToolStripMenuItem_Click(object sender, EventArgs e) {
