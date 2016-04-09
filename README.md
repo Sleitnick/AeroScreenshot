@@ -1,4 +1,4 @@
-# AeroScreenshot
+# Aero Screenshot
 ![Icon](ScreenshotTest2/AeroScreenshotIcon.png)
 
 Capture, crop, save, and share screenshots.
