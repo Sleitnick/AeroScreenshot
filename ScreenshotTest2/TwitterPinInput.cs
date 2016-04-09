@@ -7,8 +7,14 @@ namespace AeroScreenshot {
 
     public partial class TwitterPinInput : Form {
 
+        /// <summary>
+        /// Invoked when the user submits the pin he or she has entered.
+        /// </summary>
         public event PinSubmittedHandler PinSubmitted;
 
+        /// <summary>
+        /// Opens up a dialog to input the user pin.
+        /// </summary>
         public TwitterPinInput() {
             InitializeComponent();
             pinTextBox.TextChanged += PinTextBox_TextChanged;

@@ -10,6 +10,9 @@ using System.Net;
 
 namespace SimpleTweet {
 
+    /// <summary>
+    /// Simple twitter client that allows sending tweets along with media.
+    /// </summary>
     public class TwitterClient {
         
         private static readonly string TWEET_URL = "statuses/update.json";
@@ -18,6 +21,10 @@ namespace SimpleTweet {
         private RestClient twitterApiClient;
         private RestClient twitterUploadClient;
 
+        /// <summary>
+        /// Create the TwitterClient object
+        /// </summary>
+        /// <param name="auth">OAuth1 authentication for the client</param>
         public TwitterClient(OAuth auth) {
             twitterApiClient = new RestClient("https://api.twitter.com/1.1");
             twitterUploadClient = new RestClient("https://upload.twitter.com/1.1");
@@ -50,10 +57,23 @@ namespace SimpleTweet {
             return tweetResponse;
         }
 
+        /// <summary>
+        /// Send a tweet.
+        /// </summary>
+        /// <param name="message">The text to be tweeted.</param>
+        /// <param name="replyToId">Optional ID of a tweet in which to reply.</param>
+        /// <returns>The response of the request sent.</returns>
         public TwitterResponse SendTweet(string message, string replyToId = null) {
             return SendTweetMaster(message, null, null);
         }
 
+        /// <summary>
+        /// Send a tweet with media.
+        /// </summary>
+        /// <param name="message">The text to be tweeted.</param>
+        /// <param name="filePath">The file path in which to send</param>
+        /// <param name="replyToId">Optional ID of a tweet in which to reply.</param>
+        /// <returns>The response of the request sent.</returns>
         public TwitterResponse SendTweetWithMedia(string message, string filePath, string replyToId = null) {
             TwitterResponse tweetResponse;
             RestRequest uploadMediaRequest = new RestRequest(UPLOAD_MEDIA_URL, Method.POST);
@@ -75,32 +95,61 @@ namespace SimpleTweet {
 
     }
 
+    /// <summary>
+    /// OAuth1 object.Be careful if this
+    /// object is being stored, since it gives hightened access to the
+    /// application and user in reference to the consumer and access properties.
+    /// </summary>
     public class OAuth {
 
         internal string consumerKey, consumerSecret;
         internal string accessToken, accessTokenSecret;
 
+        /// <summary>
+        /// ConsumerKey for the application.
+        /// </summary>
         public string ConsumerKey {
             set {
                 consumerKey = value;
             }
         }
+
+        /// <summary>
+        /// ConsumerSecret for the application.
+        /// </summary>
         public string ConsumerSecret {
             set {
                 consumerSecret = value;
             }
         }
+
+        /// <summary>
+        /// AccessToken for the client.
+        /// </summary>
         public string AccessToken {
             set {
                 accessToken = value;
             }
         }
+
+        /// <summary>
+        /// AccessTokenSecret for the client.
+        /// </summary>
         public string AccessTokenSecret {
             set {
                 accessTokenSecret = value;
             }
         }
 
+        /// <summary>
+        /// Creates an OAuth object for OAuth1 authentication. Be careful if this
+        /// object is being stored, since it gives hightened access to the
+        /// application and user in reference to the consumer and access properties.
+        /// </summary>
+        /// <param name="consumerKey">Consumer Key.</param>
+        /// <param name="consumerSecret">Consumer Secret.</param>
+        /// <param name="accessToken">Access Token.</param>
+        /// <param name="accessTokenSecret">Access Token Secret.</param>
         public OAuth(string consumerKey, string consumerSecret, string accessToken, string accessTokenSecret) {
             ConsumerKey = consumerKey;
             ConsumerSecret = consumerSecret;

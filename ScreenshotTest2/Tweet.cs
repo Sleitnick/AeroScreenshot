@@ -8,8 +8,18 @@ namespace AeroScreenshot {
 
     public partial class Tweet : Form {
 
+        /// <summary>
+        /// Invoked when the user requests to submit the
+        /// tweet.
+        /// </summary>
         public event TweetSubmittedHandler TweetSubmitted;
 
+        /// <summary>
+        /// Open up a dialog to allow the user to type in the
+        /// Tweet status message and preview the image to
+        /// be sent.
+        /// </summary>
+        /// <param name="img">The image to preview.</param>
         public Tweet(Image img) {
             InitializeComponent();
             pictureBox1.Image = img;
