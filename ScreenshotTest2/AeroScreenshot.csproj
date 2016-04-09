@@ -71,8 +71,8 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.5\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
@@ -92,8 +92,8 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Twitterizer2, Version=2.4.2.20976, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
-      <HintPath>..\packages\twitterizer.2.4.2\lib\net40-Client\Twitterizer2.dll</HintPath>
+    <Reference Include="Twitterizer2, Version=2.4.0.26532, Culture=neutral, PublicKeyToken=69d1469eac671567, processorArchitecture=MSIL">
+      <HintPath>..\packages\twitterizer.2.4.0.26532\lib\net40\Twitterizer2.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -165,6 +165,8 @@
   <ItemGroup>
     <Content Include="AeroScreenshotIcon.ico" />
     <Content Include="AeroScreenshotIcon.png" />
+    <Content Include="GettingStarted.txt" />
+    <Content Include="Json.NET.license.txt" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
