@@ -14,12 +14,13 @@ using RestSharp.Authenticators;
 using System.IO;
 using Twitterizer;
 using System.Drawing.Printing;
+using SimpleTweet;
 
 namespace AeroScreenshot {
     public partial class MainForm : Form {
 
         private OAuthTokens tokens = new OAuthTokens();
-
+        
         private string consumerKey;
         private string consumerSecret;
         private string requestToken;
@@ -226,7 +227,6 @@ namespace AeroScreenshot {
         }
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e) {
-            Console.WriteLine("Save!");
             Image img = GetImageFromSelection();
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.CheckPathExists = true;
@@ -302,17 +302,6 @@ namespace AeroScreenshot {
 
         }
 
-        private string ImageFileToBase64(string imgFileName) {
-            Image img = Image.FromFile(imgFileName);
-            string imgBase64 = String.Empty;
-            using (MemoryStream m = new MemoryStream()) {
-                img.Save(m, img.RawFormat);
-                byte[] imageBytes = m.ToArray();
-                imgBase64 = Convert.ToBase64String(imageBytes);
-            }
-            return imgBase64;
-        }
-
         private void shareImageToolStripMenuItem_Click(object sender, EventArgs e) {
             Tweet tweet = new Tweet(GetImageFromSelection());
             tweet.TweetSubmitted += (s, args) => {
@@ -320,43 +309,18 @@ namespace AeroScreenshot {
                 Image img = args.GetImage();
                 string fileName = Path.GetTempFileName();
                 img.Save(fileName, ImageFormat.Png);
-                // REST client:
-                RestClient client = new RestClient("https://upload.twitter.com/1.1");
-                client.Authenticator = OAuth1Authenticator.ForProtectedResource(
+                TwitterClient twitterClient = new TwitterClient(new OAuth(
                     consumerKey,
                     consumerSecret,
                     accessToken,
                     accessTokenSecret
-                );
-                // Media post:
-                RestRequest mediaPost = new RestRequest("media/upload.json", Method.POST);
-                mediaPost.AlwaysMultipartFormData = true;
-                mediaPost.AddFile("media", File.ReadAllBytes(fileName), fileName, "appliation/octet-stream");
-                IRestResponse mediaPostResponse = client.Execute(mediaPost);
-                if (mediaPostResponse.StatusCode == HttpStatusCode.OK) {
-                    Console.WriteLine("Media posted successfully");
-                    dynamic content = SimpleJson.DeserializeObject(mediaPostResponse.Content);
-                    string mediaId = content.media_id_string;
-                    // Send tweet:
-                    client.BaseUrl = new Uri("https://api.twitter.com/1.1");
-                    RestRequest tweetPost = new RestRequest("statuses/update.json", Method.POST);
-                    tweetPost.AddQueryParameter("status", msg);
-                    tweetPost.AddQueryParameter("media_ids", mediaId);
-                    IRestResponse tweetPostResponse = client.Execute(tweetPost);
-                    if (tweetPostResponse.StatusCode == HttpStatusCode.OK) {
-                        Console.WriteLine("Tweet posted");
-                    } else {
-                        Console.WriteLine("Tweet failed to post");
-                        Console.WriteLine(tweetPostResponse.StatusCode);
-                        Console.WriteLine(tweetPostResponse.Content);
-                        Console.WriteLine(tweetPostResponse.ErrorMessage);
-                    }
+                ));
+                TwitterResponse tweetResponse = twitterClient.SendTweetWithMedia(msg, fileName);
+                if (tweetResponse.Failed) {
+                    Console.WriteLine("Failed to post tweet");
+                    Console.Write(tweetResponse.FailedMessage);
                 } else {
-                    Console.WriteLine("Media post failed");
-                    Console.WriteLine(mediaPostResponse.StatusCode);
-                    Console.WriteLine(mediaPostResponse.Content);
-                    Console.WriteLine(mediaPostResponse.ErrorMessage);
-                    
+                    Console.WriteLine("Successfully posted tweet and media");
                 }
             };
             tweet.Show(this);

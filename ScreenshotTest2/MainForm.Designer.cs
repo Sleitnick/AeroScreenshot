@@ -36,6 +36,8 @@
             this.shareImageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newLoginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.twitterUsernameLabel = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -113,10 +115,12 @@
             // twitterToolStripMenuItem
             // 
             this.twitterToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.twitterUsernameLabel,
+            this.toolStripSeparator2,
             this.shareImageToolStripMenuItem,
             this.newLoginToolStripMenuItem});
             this.twitterToolStripMenuItem.Name = "twitterToolStripMenuItem";
-            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.twitterToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.twitterToolStripMenuItem.Text = "Twitter...";
             // 
             // shareImageToolStripMenuItem
@@ -140,6 +144,18 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // twitterUsernameLabel
+            // 
+            this.twitterUsernameLabel.Enabled = false;
+            this.twitterUsernameLabel.Name = "twitterUsernameLabel";
+            this.twitterUsernameLabel.Size = new System.Drawing.Size(198, 22);
+            this.twitterUsernameLabel.Text = "No user logged in";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(195, 6);
             // 
             // MainForm
             // 
@@ -175,6 +191,8 @@
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shareImageToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newLoginToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem twitterUsernameLabel;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }
 
